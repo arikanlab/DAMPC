@@ -44,13 +44,13 @@ Go visit: https://gmsc.big-data-biology.org/downloads
 From Nucleotide sequence (.fasta) section:
 Download 100AA smORF catalog: GMSC10.100AA.fna.xz
 
-#### Download DBsmORF Catalog
+### Download DBsmORF Catalog
 Go visit: http://104.154.134.205:3838/DBsmORF/
 
 From Download section:
 Download both RefSeq and HMP data. Be sure to select Protein Sequences in the Download Fields section.
 
-### Filtering
+### Filter peptides
 For filtering, we used **Seqkit**
 
 Install SeqKit via conda:

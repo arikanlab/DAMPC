@@ -36,13 +36,6 @@ DAMPC was constructed by:
 
 ---
 
-## Requirements
-- **conda**
-- **git**
-- **seqkit** (for sequence prep)
-
----
-
 ## Part 1 — Downloading and preparing smORFs
 
 ### Download Global Microbial smORFs Catalog v1.0
@@ -56,7 +49,6 @@ Go visit: http://104.154.134.205:3838/DBsmORF/
 
 From Download section:
 Download both RefSeq and HMP data. Be sure to select Protein Sequences in the Download Fields section.
-
 
 ### Filtering
 For filtering, we used **Seqkit**

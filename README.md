@@ -108,7 +108,6 @@ python3 anticp2.py -i input.fasta -o anticp2_output.csv -j 1 -t 0.5 -m 2 -w 10 -
 - -d : Display {1: ACP only, 2: All peptides} 
 - Output File: The Seq ID column contains the ">" symbol. This should be taken into account for further analyses. Positive results: AntiCP, Negative results: Non-AntiCP. File format is CSV.
 
----
 
 ### ACPred-BMF
 #### Setup
@@ -138,7 +137,6 @@ bash main.sh alternative
 - Input: Place FASTA files of peptide sequences inside the data/ directory 
 - Output File: There is no column for Seq ID. Positive results: 1, Negative results: 0. File format is CSV.
 
----
 
 ### Con_ACP
 #### Setup
@@ -166,7 +164,6 @@ python3 inf.py --input input.fasta --batch_size 20 --model_type ACP_Mixed_80 --d
 - Input: FASTA format file 
 - Output File: There is no column for sequences. Positive results: ACP, Negative results: – . File format is TXT.
 
----
 
 ### AMP-Scanner-v2
 #### Setup
@@ -191,7 +188,6 @@ python amp_scanner_v2_predict_tf1.py \
 - Input: FASTA file with peptide sequences 
 - Output File: Positive results are shown as " AMP " and negative results are shown as " Non-AMP ".
 
----
 
 ### Macrel
 #### Setup

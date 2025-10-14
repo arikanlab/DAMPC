@@ -2,22 +2,19 @@
 
 If you use this repository, please cite:
 
-- Sağıroğlu Ö, Arıkan M, DAMPC: dual activity microbial peptides catalog, bioRxiv, 2025.
+Sağıroğlu Ö, Arıkan M, DAMPC: dual activity microbial peptides catalog, *bioRxiv*, 2025 [Link].
+
+---
 
 # Table of contents
 - [Overview](#overview)
-- [Data Availability](#data-availability)
-- [Requirements](#requirements)
-- [Repository Structure](#repository-structure)
-- [Part 1 — Downloading and preparing smORFs](#part-1--downloading-and-preparing-smorfs)
-- [Part 2 — Running ACP and AMP prediction tools](#part-2--running-acp-and-amp-prediction-tools)
-- [Part 3 — Comparisons with ACP and AMP databases](#part-3--comparisons-with-acp-and-amp-databases)
+- [Step-by-Step Workflow](#step-by-step-workflow)
 - [References](#references)
 
 ---
 
 # Overview
-**DAMPC** is a comprehensive catalog of microbial peptides predicted to have **dual activity** - both anticancer (ACP) and antimicrobial (AMP) properties.  
+**DAMPC** is a comprehensive catalog of microbial peptides predicted to have **dual activity**—both anticancer (ACP) and antimicrobial (AMP) properties.  
 
 The DAMPC datasets are publicly available through the links below:
 
@@ -35,7 +32,7 @@ DAMPC was constructed by:
 
 1) Collecting microbial **smORFs/short peptides** from public catalogs,  
 2) Running multiple **ACP and AMP predictors** in a consensus approach, and 
-3) Comparing the predictions against known ACP/AMP databases
+3) Comparing the predictions against known **ACP/AMP databases**
 
 ---
 
@@ -46,34 +43,19 @@ DAMPC was constructed by:
 
 ---
 
-## Repository Structure
-```
-DAMPC/
-├─ scripts/
-│  ├─ add_ids.py
-│  ├─ add_sequences.py
-│  ├─ fasta_compare.py
-│  └─ to_fasta.py
-├─ LICENSE  
-└─ README.md
-```
-
----
-
 ## Part 1 — Downloading and preparing smORFs
 
-### Download Global Microbial smORFs Catalogue v1.0
+### Download Global Microbial smORFs Catalog v1.0
 Go visit: https://gmsc.big-data-biology.org/downloads
 
 From Nucleotide sequence (.fasta) section:
-Download 100AA smORF catalogue: GMSC10.100AA.fna.xz
+Download 100AA smORF catalog: GMSC10.100AA.fna.xz
 
-#### Download DBsmORF Catalogue
+#### Download DBsmORF Catalog
 Go visit: http://104.154.134.205:3838/DBsmORF/
 
 From Download section:
-Download both RefSeq and HMP datas. Don't forget the choose Protein Sequence in the Download Fields section.
-
+Download both RefSeq and HMP data. Be sure to select Protein Sequences in the Download Fields section.
 
 
 ### Filtering

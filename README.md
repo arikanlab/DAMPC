@@ -2,7 +2,7 @@
 
 If you use this repository, please cite:
 
-- DAMPC, bioRxiv. Link
+- Sağıroğlu Ö, Arıkan M, DAMPC: dual activity microbial peptides catalog, bioRxiv, 2025.
 
 # Table of contents
 - [Overview](#overview)
@@ -17,17 +17,8 @@ If you use this repository, please cite:
 ---
 
 # Overview
-**DAMPC** builds a comprehensive catalog of microbial peptides predicted to have **dual activity** - both anticancer (ACP) and antimicrobial (AMP) properties.  
+**DAMPC** is a comprehensive catalog of microbial peptides predicted to have **dual activity** - both anticancer (ACP) and antimicrobial (AMP) properties.  
 
-DAMPC was constructed by:
-
-1) Collecting microbial **smORFs/short peptides** from public catalogs,  
-2) Running multiple **ACP and AMP predictors** in a consensus approach, and 
-3) Comparing the predictions against known ACP/AMP databases
-
----
-
-# Data Availability
 The DAMPC datasets are publicly available through the links below:
 
 | Catalog   | Catalog link |
@@ -39,14 +30,23 @@ DAMPC is also accessible as a searchable catalog at https://arikanlab.com/Home/D
 
 ---
 
-# Requirements
+# Step-by-Step Workflow
+DAMPC was constructed by:
+
+1) Collecting microbial **smORFs/short peptides** from public catalogs,  
+2) Running multiple **ACP and AMP predictors** in a consensus approach, and 
+3) Comparing the predictions against known ACP/AMP databases
+
+---
+
+## Requirements
 - **conda**
 - **git**
 - **seqkit** (for sequence prep)
 
 ---
 
-# Repository Structure
+## Repository Structure
 ```
 DAMPC/
 ├─ scripts/
@@ -60,15 +60,15 @@ DAMPC/
 
 ---
 
-# Part 1 — Downloading and preparing smORFs
+## Part 1 — Downloading and preparing smORFs
 
-## Download Global Microbial smORFs Catalogue v1.0
+### Download Global Microbial smORFs Catalogue v1.0
 Go visit: https://gmsc.big-data-biology.org/downloads
 
 From Nucleotide sequence (.fasta) section:
 Download 100AA smORF catalogue: GMSC10.100AA.fna.xz
 
-## Download DBsmORF Catalogue
+#### Download DBsmORF Catalogue
 Go visit: http://104.154.134.205:3838/DBsmORF/
 
 From Download section:
@@ -76,7 +76,7 @@ Download both RefSeq and HMP datas. Don't forget the choose Protein Sequence in 
 
 
 
-## Filtering
+### Filtering
 For filtering, we used **Seqkit**
 
 Install SeqKit via conda:
@@ -103,10 +103,10 @@ This command splits output.fasta into 5 equal parts and saves them into the fold
 seqkit split2 -p 5 output.fasta -O parts/
 ```
 
-# Part 2 — Running ACP and AMP prediction tools
+## Part 2 — Running ACP and AMP prediction tools
 
-## AntiCP2
-### Setup
+### AntiCP2
+#### Setup
 ```bash
 conda create -n anticp2 python=3.7
 conda activate anticp2
@@ -120,12 +120,12 @@ git clone https://github.com/raghavagps/anticp2.git
 cd anticp2
 ```
 
-### Usage
+#### Usage
 ```bash
 python3 anticp2.py -i input.fasta -o anticp2_output.csv -j 1 -t 0.5 -m 2 -w 10 -d 2
 ```
 
-### Notes
+#### Notes
 
 - -j : Job type {1: predict, 2: design, 3: scan} 
 - -m : Model {1: ACP/AMP, 2: ACP/non-ACP} 
@@ -136,8 +136,8 @@ python3 anticp2.py -i input.fasta -o anticp2_output.csv -j 1 -t 0.5 -m 2 -w 10 -
 
 ---
 
-## ACPred-BMF
-### Setup
+### ACPred-BMF
+#### Setup
 ```bash
 conda create -n acpredbmf python=3.8
 conda activate acpredbmf
@@ -153,12 +153,12 @@ git clone https://github.com/RUC-MIALAB/ACPred-BMF.git
 cd ACPred-BMF
 ```
 
-### Usage
+#### Usage
 ```bash
 bash main.sh alternative
 ```
 
-### Notes
+#### Notes
 
 - Alternative model: trained on ACPs/random peptides as positive/negative samples 
 - Input: Place FASTA files of peptide sequences inside the data/ directory 
@@ -166,8 +166,8 @@ bash main.sh alternative
 
 ---
 
-## Con_ACP
-### Setup
+### Con_ACP
+#### Setup
 ```bash
 conda create -n conacp python=3.10
 conda activate conacp
@@ -180,12 +180,12 @@ git clone https://github.com/bzlee-bio/con_ACP.git
 cd con_ACP
 ```
 
-### Usage
+#### Usage
 ```bash
 python3 inf.py --input input.fasta --batch_size 20 --model_type ACP_Mixed_80 --device cpu --output output.txt
 ```
 
-### Notes
+#### Notes
 
 - model_type: ACP_Mixed_80 (default), ACP2_main, ACP2_alter, ACP500_ACP164, ACP500_ACP2710, LEE_Indep 
 - device: cpu or gpu 
@@ -194,8 +194,8 @@ python3 inf.py --input input.fasta --batch_size 20 --model_type ACP_Mixed_80 --d
 
 ---
 
-## AMP-Scanner-v2
-### Setup
+### AMP-Scanner-v2
+#### Setup
 ```bash
 git clone https://github.com/dan-veltri/amp-scanner-v2.git
 cd amp-scanner-v2
@@ -204,14 +204,14 @@ conda env create -f environment_original_paper_model.yml
 conda activate ascan2_orig
 ```
 
-### Usage
+#### Usage
 ```bash
 python amp_scanner_v2_predict_tf1.py \
   -fasta input.fasta \
   -model trained-models/OriginalPaper_081917_FULL_MODEL.h5
 ```
 
-### Notes
+#### Notes
 
 - Uses the original paper model provided in the repository 
 - Input: FASTA file with peptide sequences 
@@ -219,20 +219,20 @@ python amp_scanner_v2_predict_tf1.py \
 
 ---
 
-## Macrel
-### Setup
+### Macrel
+#### Setup
 ```bash
 conda create -n env_macrel -c bioconda macrel
 conda activate env_macrel
 ```
 
-### Usage
+#### Usage
 ```bash
 cd /yourFile
 macrel peptides -f input.fasta -o out_peptides --keep-negatives
 ```
 
-### Notes
+#### Notes
 
 - --keep-negatives: keeps negative predictions in the output file 
 - Important: /yourFile is the directory where your input FASTA file is located 
@@ -240,7 +240,7 @@ macrel peptides -f input.fasta -o out_peptides --keep-negatives
 
 ---
 
-# Part 3 — Comparisons with ACP and AMP databases
+## Part 3 — Comparisons with ACP and AMP databases
 
 Since Con_ACP result files do not contain sequences by default, with add_sequences.py, you can automatically add the corresponding sequences from a FASTA file into the result table based on matching IDs:
 

@@ -20,8 +20,8 @@ The DAMPC datasets are publicly available through the links below:
 
 | Catalog   | Catalog link |
 |-----------|-----------|
-| DAMPCS - Peptides | [Link 1](https://example.com/data1) |
-| DAMPC - Metadata | [Link 2](https://example.com/data2) |
+| DAMPC - Peptides | [Link](https://zenodo.org/records/17475162/files/DAMPC.fasta?download=1) |
+| DAMPC - Metadata | [Link](https://zenodo.org/records/17475162/files/DAMPC_metadata.csv?download=1) |
 
 DAMPC is also accessible as a searchable catalog at https://arikanlab.com/Home/DAMPC
 

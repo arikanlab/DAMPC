@@ -33,7 +33,7 @@ DAMPC was constructed by:
 1) Collecting microbial **smORFs/short peptides** from public catalogs,  
 2) Running multiple **ACP and AMP predictors** in a consensus approach, and 
 3) Comparing the predictions against known **ACP/AMP databases**
-
+4) Toxicity analysis with **ToxinPred 3.0**
 ---
 
 ## Part 1 — Downloading and preparing smORFs
@@ -207,6 +207,7 @@ macrel peptides -f input.fasta -o out_peptides --keep-negatives
 - --keep-negatives: keeps negative predictions in the output file 
 - Important: /yourFile is the directory where your input FASTA file is located 
 - Output File: Positive results are shown as " True " and negative results are shown as " False ".
+- In our study, Macrel v1.5.0 was used.
 
 ---
 
@@ -287,6 +288,35 @@ Use the fasta_compare.py script to compare two FASTA files and write out the com
 ```bash
 python fasta_compare.py <first.fasta> <second.fasta>
 ```
+---
+
+## Part 4 — Toxicity Analysis With Toxinpred 3.0
+
+### Setup
+
+``` bash
+conda create -n toxinpred python=3.10
+conda activate toxinpred
+
+pip install toxinpred3
+pip install numpy==1.26.4
+pip install pandas==2.3.3
+pip install scikit-learn==1.2.2
+```
+
+### Usage
+
+``` bash
+toxinpred3 -i input.fasta -o output.csv -t 0.5 -m 2 -d 2
+```
+
+### Notes
+
+-   -i: input file
+-   -o: output file
+-   -t: threshold value
+-   -m: model (1: ML model, 2: Hybrid model)
+-   -d: display (1:Toxin peptide, 2: All peptides)
 
 ---
 # References
@@ -307,3 +337,5 @@ python fasta_compare.py <first.fasta> <second.fasta>
 - Veltri D, Kamath U, Shehu A. Deep learning improves antimicrobial peptide recognition. Bioinformatics. 2018 Aug 15;34(16):2740-2747. doi: 10.1093/bioinformatics/bty179. GitHub: https://github.com/dan-veltri/amp-scanner-v2
 
 - Santos-Júnior CD, Pan S, Zhao XM, Coelho LP. Macrel: antimicrobial peptide screening in genomes and metagenomes. PeerJ. 2020 Dec 18;8:e10555. doi: 10.7717/peerj.10555. GitHub: https://github.com/BigDataBiology/macrel 
+
+- Rathore, A. S., Choudhury, S., Arora, A., Tijare, P., & Raghava, G. P. (2024). ToxinPred 3.0: An improved method for predicting the toxicity of peptides. Computers in biology and medicine, 179, 108926. Github: https://github.com/raghavagps/toxinpred3

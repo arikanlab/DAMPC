@@ -2,7 +2,7 @@
 
 If you use this repository, please cite:
 
-Sağıroğlu Ö, Arıkan M, DAMPC: dual activity microbial peptides catalog, 2026 [Link].
+Sağıroğlu Ö, Arıkan M. Dual activity microbial peptides catalog. *Scientific Data* (2026). [https://doi.org/10.1038/s41597-026-07521-8]
 
 ---
 
